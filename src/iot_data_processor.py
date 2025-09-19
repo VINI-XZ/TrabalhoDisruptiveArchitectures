@@ -17,7 +17,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('iot_pipeline.log'),
+        logging.FileHandler('logs/iot_pipeline.log' if os.path.exists('logs') else '../logs/iot_pipeline.log'),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -32,7 +32,11 @@ class IoTDataProcessor:
         """
         self.db_config = db_config
         self.engine = None
-        self.csv_file = 'IOT-temp.csv'
+        # Define o caminho do CSV baseado no contexto (local ou Docker)
+        if os.path.exists('data/IOT-temp.csv'):
+            self.csv_file = 'data/IOT-temp.csv'  # Para Docker
+        else:
+            self.csv_file = '../data/IOT-temp.csv'  # Para execução local
         
     def connect_database(self):
         """Estabelece conexão com o PostgreSQL"""

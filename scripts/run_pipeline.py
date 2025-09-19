@@ -25,7 +25,7 @@ def check_requirements():
     print("\n🔍 Verificando requisitos...")
     
     # Verifica se o arquivo CSV existe
-    csv_file = Path("IOT-temp.csv")
+    csv_file = Path("../data/IOT-temp.csv")
     if not csv_file.exists():
         print("❌ Arquivo IOT-temp.csv não encontrado!")
         return False
@@ -55,7 +55,7 @@ def run_data_processing():
     
     try:
         result = subprocess.run(
-            [sys.executable, "iot_data_processor.py"],
+            [sys.executable, "../src/iot_data_processor.py"],
             check=True,
             capture_output=True,
             text=True
@@ -85,7 +85,7 @@ def start_dashboard():
     try:
         # Inicia o Streamlit em background
         process = subprocess.Popen([
-            sys.executable, "-m", "streamlit", "run", "dashboard.py",
+            sys.executable, "-m", "streamlit", "run", "../src/dashboard.py",
             "--server.port", "8501",
             "--server.address", "0.0.0.0"
         ])
