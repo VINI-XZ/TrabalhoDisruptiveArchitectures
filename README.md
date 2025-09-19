@@ -91,4 +91,11 @@ netstat -an | findstr :8501
 - **Docker**: Containerização
 - **Docker Compose**: Orquestração de serviços
 
+<img width="1909" height="915" alt="Temperatura 3" src="https://github.com/user-attachments/assets/5756a86f-45d9-4439-8da5-ba6db8e5b67d" />
+
+<img width="1920" height="925" alt="Temperatura 2" src="https://github.com/user-attachments/assets/1318e550-86f4-4efe-b8a1-f3410b535274" />
+
+<img width="1903" height="920" alt="Temperatura 1" src="https://github.com/user-attachments/assets/57d614c8-1f77-4860-a0a9-fc18627e1fe3" />
+
+
 
