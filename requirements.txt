@@ -1,0 +1,17 @@
+# Pipeline de Dados IoT - Dependências
+# Instalar com: pip install -r requirements.txt
+
+# Processamento de dados
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Banco de dados PostgreSQL
+psycopg2-binary>=2.9.0
+sqlalchemy>=1.4.0
+
+# Dashboard e visualização
+streamlit>=1.28.0
+plotly>=5.15.0
+
+# Utilitários
+python-dotenv>=1.0.0

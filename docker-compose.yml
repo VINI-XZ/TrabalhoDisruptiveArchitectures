@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres-iot:
+    image: postgres:15
+    container_name: postgres-iot
+    environment:
+      POSTGRES_DB: database_trabalho
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - iot-network
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    container_name: iot-dashboard
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres-iot
+    volumes:
+      - ./IOT-temp.csv:/app/IOT-temp.csv
+      - ./iot_data_processor.py:/app/iot_data_processor.py
+      - ./dashboard.py:/app/dashboard.py
+    environment:
+      - DATABASE_URL=postgresql://postgres:admin@postgres-iot:5432/database_trabalho
+    networks:
+      - iot-network
+    restart: unless-stopped
+    command: streamlit run dashboard.py --server.port=8501 --server.address=0.0.0.0
+
+volumes:
+  postgres_data:
+
+networks:
+  iot-network:
+    driver: bridge
